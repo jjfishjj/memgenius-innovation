@@ -1,0 +1,1176 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09152f">
+  <meta name="description" content="記易創新 MemGenius Innovation，以科學、設計與科技，幫助每個人找到記得住、想得起、用得出的學習策略。">
+  <meta property="og:title" content="記易創新｜MemGenius Innovation">
+  <meta property="og:description" content="把複雜知識，變成記得住、想得起、用得出的能力。">
+  <meta property="og:type" content="website">
+  <title>記易創新｜MemGenius Innovation</title>
+  <style>
+    :root {
+      --navy: #09152f;
+      --navy-2: #11224a;
+      --blue: #3568f4;
+      --violet: #7559e8;
+      --mint: #51d6ad;
+      --lime: #c9f479;
+      --cream: #f7f5ee;
+      --paper: #fffefa;
+      --ink: #10203d;
+      --muted: #60708d;
+      --line: rgba(16, 32, 61, .12);
+      --shadow: 0 24px 70px rgba(9, 21, 47, .12);
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 92px;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--cream);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      line-height: 1.65;
+      text-rendering: optimizeLegibility;
+    }
+
+    body.menu-open { overflow: hidden; }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    img, svg { display: block; max-width: 100%; }
+
+    :focus-visible {
+      outline: 3px solid var(--lime);
+      outline-offset: 4px;
+    }
+
+    .skip-link {
+      position: fixed;
+      left: 16px;
+      top: -80px;
+      z-index: 1000;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--lime);
+      color: var(--navy);
+      font-weight: 800;
+      transition: top .2s ease;
+    }
+
+    .skip-link:focus { top: 16px; }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+      background: rgba(9, 21, 47, .92);
+      color: #fff;
+      backdrop-filter: blur(16px);
+    }
+
+    .nav-wrap {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: max-content;
+      font-weight: 900;
+      letter-spacing: -.02em;
+    }
+
+    .brand-mark {
+      position: relative;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--mint), var(--blue));
+      box-shadow: 0 10px 28px rgba(53, 104, 244, .3);
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .brand-mark::before {
+      width: 10px;
+      height: 10px;
+      left: 9px;
+      top: 9px;
+      box-shadow: 14px 14px 0 #fff;
+    }
+
+    .brand-mark::after {
+      width: 3px;
+      height: 23px;
+      left: 20px;
+      top: 9px;
+      transform: rotate(-45deg);
+    }
+
+    .brand-copy { display: grid; line-height: 1.05; }
+    .brand-copy small { margin-top: 5px; color: #aebbd7; font-size: 10px; letter-spacing: .13em; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: #dce4f4;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav-links a:not(.button):hover { color: var(--lime); }
+
+    .menu-button {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 14px;
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0 20px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--blue);
+      color: #fff;
+      font-weight: 850;
+      cursor: pointer;
+      box-shadow: 0 12px 28px rgba(53, 104, 244, .24);
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(53, 104, 244, .32);
+    }
+
+    .button-light { background: #fff; color: var(--navy); box-shadow: none; }
+    .button-ghost { border: 1px solid rgba(255,255,255,.3); background: transparent; box-shadow: none; }
+    .button-dark { background: var(--navy); }
+    .button-small { min-height: 42px; padding: 0 17px; font-size: 13px; }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 92px 0 86px;
+      background:
+        radial-gradient(circle at 80% 15%, rgba(81, 214, 173, .22), transparent 28rem),
+        radial-gradient(circle at 10% 85%, rgba(117, 89, 232, .18), transparent 32rem),
+        var(--navy);
+      color: #fff;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .18;
+      background-image: radial-gradient(rgba(255,255,255,.8) .7px, transparent .7px);
+      background-size: 28px 28px;
+      mask-image: linear-gradient(to bottom, black, transparent 85%);
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.06fr) minmax(380px, .94fr);
+      align-items: center;
+      gap: 70px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 20px;
+      color: var(--mint);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 2px;
+      background: currentColor;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 760px;
+      margin-bottom: 24px;
+      font-size: clamp(46px, 6.4vw, 84px);
+      line-height: 1.06;
+      letter-spacing: -.055em;
+    }
+
+    h1 span { color: var(--lime); }
+
+    .hero-copy > p {
+      max-width: 620px;
+      margin-bottom: 30px;
+      color: #c6d2e9;
+      font-size: clamp(17px, 2vw, 21px);
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .microproof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      margin: 25px 0 0;
+      padding: 0;
+      color: #aebbd7;
+      font-size: 12px;
+      list-style: none;
+    }
+
+    .microproof li::before { content: "✓"; margin-right: 7px; color: var(--mint); font-weight: 900; }
+
+    .memory-map {
+      position: relative;
+      min-height: 510px;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 38px;
+      background: linear-gradient(145deg, rgba(255,255,255,.1), rgba(255,255,255,.035));
+      box-shadow: 0 40px 100px rgba(0,0,0,.24);
+      backdrop-filter: blur(14px);
+    }
+
+    .orbit {
+      position: absolute;
+      inset: 50% auto auto 50%;
+      width: 330px;
+      height: 330px;
+      border: 1px solid rgba(255,255,255,.17);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .orbit::before {
+      content: "";
+      position: absolute;
+      inset: 58px;
+      border: 1px dashed rgba(201,244,121,.34);
+      border-radius: 50%;
+    }
+
+    .core {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      display: grid;
+      width: 138px;
+      height: 138px;
+      place-items: center;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #e5ffb6, var(--mint) 48%, var(--blue));
+      color: var(--navy);
+      font-weight: 950;
+      line-height: 1.15;
+      text-align: center;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 55px rgba(81,214,173,.35);
+    }
+
+    .node {
+      position: absolute;
+      display: grid;
+      width: 104px;
+      min-height: 74px;
+      place-items: center;
+      padding: 10px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 20px;
+      background: rgba(9,21,47,.78);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 850;
+      text-align: center;
+      box-shadow: 0 14px 36px rgba(0,0,0,.2);
+    }
+
+    .node strong { display: block; color: var(--lime); font-size: 21px; }
+    .node-a { left: 8%; top: 12%; }
+    .node-b { right: 7%; top: 18%; }
+    .node-c { left: 7%; bottom: 13%; }
+    .node-d { right: 9%; bottom: 10%; }
+
+    .map-label {
+      position: absolute;
+      left: 24px;
+      top: 22px;
+      color: #9dadcc;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .11em;
+    }
+
+    .ticker {
+      overflow: hidden;
+      border-bottom: 1px solid rgba(16,32,61,.08);
+      background: var(--paper);
+    }
+
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      padding: 18px 0;
+      animation: marquee 28s linear infinite;
+    }
+
+    .ticker span { padding: 0 26px; color: #53627e; font-size: 13px; font-weight: 850; }
+    .ticker span::before { content: "●"; margin-right: 22px; color: var(--mint); font-size: 8px; }
+
+    @keyframes marquee { to { transform: translateX(-50%); } }
+
+    .section { padding: 110px 0; }
+    .section-white { background: var(--paper); }
+    .section-dark { background: var(--navy); color: #fff; }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, .72fr) minmax(300px, .45fr);
+      justify-content: space-between;
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 52px;
+    }
+
+    h2 {
+      margin-bottom: 0;
+      font-size: clamp(36px, 5vw, 60px);
+      line-height: 1.12;
+      letter-spacing: -.045em;
+    }
+
+    .section-head > p { margin-bottom: 5px; color: var(--muted); }
+    .section-dark .section-head > p { color: #aebbd7; }
+
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .principle-card {
+      min-height: 320px;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.58);
+    }
+
+    .principle-card:nth-child(2) { transform: translateY(22px); }
+    .principle-card:nth-child(3) { transform: translateY(44px); }
+
+    .step-number {
+      display: inline-grid;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 66px;
+      place-items: center;
+      border-radius: 15px;
+      background: var(--navy);
+      color: var(--lime);
+      font-weight: 900;
+    }
+
+    .principle-card h3 { margin-bottom: 12px; font-size: 24px; letter-spacing: -.03em; }
+    .principle-card p { margin-bottom: 0; color: var(--muted); }
+
+    .lab-shell {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .lab-copy {
+      display: flex;
+      min-height: 590px;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 42px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(117,89,232,.34), transparent 18rem),
+        var(--navy-2);
+    }
+
+    .lab-copy h2 { max-width: 570px; }
+    .lab-copy p { max-width: 520px; color: #bdcae2; }
+
+    .lab-notes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .lab-notes div {
+      padding: 15px 10px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.07);
+      color: #dce4f4;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .experiment {
+      min-height: 590px;
+      padding: 34px;
+      border-radius: 34px;
+      background: var(--paper);
+      color: var(--ink);
+      box-shadow: var(--shadow);
+    }
+
+    .experiment-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .experiment-top span {
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: #edf1ff;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .timer {
+      display: grid;
+      width: 60px;
+      height: 60px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--lime);
+      font-size: 19px;
+      font-weight: 950;
+    }
+
+    .experiment h3 { font-size: 29px; letter-spacing: -.035em; }
+    .experiment .instruction { color: var(--muted); }
+
+    .word-grid,
+    .recall-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 26px 0;
+    }
+
+    .word-chip,
+    .recall-option {
+      min-height: 58px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: #f8f8f3;
+      font-weight: 850;
+    }
+
+    .word-chip:nth-child(2n) { background: #effcf7; }
+    .word-chip:nth-child(3n) { background: #f1efff; }
+
+    .recall-option {
+      position: relative;
+      cursor: pointer;
+      transition: border .18s ease, background .18s ease, transform .18s ease;
+    }
+
+    .recall-option:hover { transform: translateY(-2px); border-color: var(--blue); }
+    .recall-option input { position: absolute; opacity: 0; }
+    .recall-option:has(input:checked) { border-color: var(--blue); background: #eaf0ff; color: #214fc3; }
+
+    .experiment-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .status-message { min-height: 28px; margin: 18px 0 0; color: var(--muted); font-weight: 750; }
+    .status-message.success { color: #087654; }
+    .hidden { display: none !important; }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .method-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 300px;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: #fff;
+    }
+
+    .method-card::after {
+      content: attr(data-symbol);
+      position: absolute;
+      right: 20px;
+      bottom: -35px;
+      color: rgba(53,104,244,.07);
+      font-size: 140px;
+      font-weight: 950;
+      line-height: 1;
+    }
+
+    .method-card h3 { margin: 46px 0 10px; font-size: 26px; }
+    .method-card p { max-width: 430px; color: var(--muted); }
+    .method-label { color: var(--blue); font-size: 12px; font-weight: 900; letter-spacing: .1em; }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: minmax(300px, .75fr) minmax(0, 1.25fr);
+      gap: 70px;
+      align-items: center;
+    }
+
+    .portrait-card {
+      position: relative;
+      min-height: 600px;
+      overflow: hidden;
+      border-radius: 38px;
+      background:
+        radial-gradient(circle at 32% 25%, rgba(201,244,121,.9), transparent 4rem),
+        radial-gradient(circle at 70% 65%, rgba(81,214,173,.75), transparent 11rem),
+        linear-gradient(145deg, #1d397a, #0a1734 65%);
+      box-shadow: var(--shadow);
+    }
+
+    .portrait-card::before {
+      content: "JK";
+      position: absolute;
+      left: 50%;
+      top: 48%;
+      color: rgba(255,255,255,.92);
+      font-size: 160px;
+      font-weight: 950;
+      letter-spacing: -.1em;
+      transform: translate(-50%, -50%);
+    }
+
+    .portrait-caption {
+      position: absolute;
+      inset: auto 22px 22px;
+      padding: 22px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 22px;
+      background: rgba(9,21,47,.76);
+      color: #fff;
+      backdrop-filter: blur(12px);
+    }
+
+    .portrait-caption strong { display: block; margin-bottom: 3px; font-size: 20px; }
+    .portrait-caption span { color: #b9c6df; font-size: 13px; }
+
+    .story-copy blockquote {
+      margin: 30px 0;
+      padding-left: 25px;
+      border-left: 4px solid var(--mint);
+      color: var(--navy);
+      font-size: 25px;
+      font-weight: 850;
+      line-height: 1.45;
+    }
+
+    .story-copy > p { color: var(--muted); }
+
+    .credentials {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 32px 0;
+    }
+
+    .credential {
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .offer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .offer {
+      display: flex;
+      min-height: 430px;
+      flex-direction: column;
+      padding: 30px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 28px;
+      background: rgba(255,255,255,.055);
+    }
+
+    .offer.featured {
+      border-color: transparent;
+      background: var(--lime);
+      color: var(--navy);
+      transform: translateY(-14px);
+    }
+
+    .offer .offer-type { color: var(--mint); font-size: 12px; font-weight: 900; letter-spacing: .1em; }
+    .offer.featured .offer-type { color: #356113; }
+    .offer h3 { margin: 30px 0 12px; font-size: 27px; }
+    .offer p { color: #aebbd7; }
+    .offer.featured p { color: #40512f; }
+    .offer ul { margin: 15px 0 30px; padding-left: 20px; color: #dce4f4; }
+    .offer.featured ul { color: #243818; }
+    .offer .button { margin-top: auto; }
+
+    .contact-card {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 40px;
+      padding: 56px;
+      border-radius: 38px;
+      background: linear-gradient(120deg, var(--blue), var(--violet));
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-card::after {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -110px;
+      width: 300px;
+      height: 300px;
+      border: 50px solid rgba(255,255,255,.09);
+      border-radius: 50%;
+    }
+
+    .contact-card h2 { max-width: 760px; }
+    .contact-card p { margin: 18px 0 0; color: #e2e8ff; }
+    .contact-card .button { position: relative; z-index: 1; min-width: 170px; }
+
+    .site-footer {
+      padding: 42px 0;
+      background: var(--navy);
+      color: #aebbd7;
+    }
+
+    .footer-wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .footer-wrap p { margin: 0; font-size: 12px; }
+    .footer-links { display: flex; gap: 20px; font-size: 12px; font-weight: 800; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 940px) {
+      .menu-button { display: inline-grid; place-items: center; }
+      .nav-links {
+        position: fixed;
+        inset: 76px 0 auto;
+        display: none;
+        align-items: stretch;
+        padding: 24px 20px 32px;
+        border-bottom: 1px solid rgba(255,255,255,.12);
+        background: var(--navy);
+        flex-direction: column;
+      }
+      .nav-links.open { display: flex; }
+      .hero { padding-top: 70px; }
+      .hero-grid, .lab-shell, .story-grid { grid-template-columns: 1fr; }
+      .memory-map { min-height: 460px; }
+      .section-head { grid-template-columns: 1fr; gap: 20px; }
+      .principles, .offer-grid { grid-template-columns: 1fr; }
+      .principle-card:nth-child(n), .offer.featured { transform: none; }
+      .principle-card { min-height: 230px; }
+      .step-number { margin-bottom: 30px; }
+      .offer { min-height: 360px; }
+      .contact-card { grid-template-columns: 1fr; }
+      .contact-card .button { justify-self: start; }
+    }
+
+    @media (max-width: 640px) {
+      .container { width: min(100% - 28px, 1180px); }
+      .brand-copy small { display: none; }
+      .section { padding: 78px 0; }
+      h1 { font-size: 46px; }
+      .hero-grid { gap: 45px; }
+      .memory-map { min-height: 390px; }
+      .orbit { width: 250px; height: 250px; }
+      .core { width: 112px; height: 112px; font-size: 13px; }
+      .node { width: 87px; min-height: 63px; font-size: 11px; }
+      .node strong { font-size: 17px; }
+      .lab-copy, .experiment { min-height: auto; padding: 25px; }
+      .lab-notes { grid-template-columns: 1fr; }
+      .word-grid, .recall-grid { grid-template-columns: repeat(2, 1fr); }
+      .method-grid, .credentials { grid-template-columns: 1fr; }
+      .portrait-card { min-height: 460px; }
+      .portrait-card::before { font-size: 120px; }
+      .contact-card { padding: 34px 26px; }
+      .footer-wrap { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#top" aria-label="記易創新首頁">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-copy">記易創新<small>MEMGENIUS INNOVATION</small></span>
+      </a>
+      <button class="menu-button" id="menu-button" aria-expanded="false" aria-controls="primary-nav" aria-label="開啟導覽選單">☰</button>
+      <nav class="nav-links" id="primary-nav" aria-label="主要導覽">
+        <a href="#why">我們相信</a>
+        <a href="#lab">記憶實驗</a>
+        <a href="#methods">解決方案</a>
+        <a href="#jerome">創辦人</a>
+        <a href="#programs">講座課程</a>
+        <a class="button button-small" href="#contact">合作洽詢 ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Memory × Science × Technology</p>
+          <h1>把複雜知識，變成<span>想得起來</span>的能力。</h1>
+          <p>記易創新以科學、設計與科技，幫助學習者把單字、人名、數字、文章與簡報，轉成記得住、想得起、用得出的記憶策略。</p>
+          <div class="hero-actions">
+            <a class="button" href="#lab">開始免費記憶實驗 →</a>
+            <a class="button button-ghost" href="#programs">查看講座與課程</a>
+          </div>
+          <ul class="microproof" aria-label="服務特色">
+            <li>不是 IQ 測驗</li>
+            <li>不把人固定成單一類型</li>
+            <li>用實際回想驗證</li>
+          </ul>
+        </div>
+
+        <div class="memory-map reveal" aria-label="MemGenius 記憶策略示意圖">
+          <span class="map-label">MEMORY STRATEGY MAP / 01</span>
+          <div class="orbit"></div>
+          <div class="core">真實任務<br>REAL TASK</div>
+          <div class="node node-a"><span><strong>01</strong>聲音鉤子</span></div>
+          <div class="node node-b"><span><strong>02</strong>數字轉碼</span></div>
+          <div class="node node-c"><span><strong>03</strong>標籤定位</span></div>
+          <div class="node node-d"><span><strong>04</strong>空間路線</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>主動提取</span><span>間隔複習</span><span>圖像編碼</span><span>聲音鉤子</span><span>空間定位</span><span>錯誤修復</span><span>情境遷移</span>
+        <span>主動提取</span><span>間隔複習</span><span>圖像編碼</span><span>聲音鉤子</span><span>空間定位</span><span>錯誤修復</span><span>情境遷移</span>
+      </div>
+    </div>
+
+    <section class="section" id="why">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Why MemGenius</p>
+            <h2>你可能不是記性差，<br>只是方法還沒對上任務。</h2>
+          </div>
+          <p>看過、畫線、抄寫，容易產生熟悉感；真正需要使用時，大腦卻必須在沒有答案的狀態下重新提取。記易創新把「我該怎麼記」變成可以實驗、比較與持續修正的過程。</p>
+        </div>
+
+        <div class="principles">
+          <article class="principle-card reveal">
+            <span class="step-number">01</span>
+            <h3>先看任務，不先貼標籤</h3>
+            <p>記單字、記數字與準備演講需要不同策略。同一個人在不同情境，也可以使用不同入口。</p>
+          </article>
+          <article class="principle-card reveal">
+            <span class="step-number">02</span>
+            <h3>關掉答案，才知道是否真的會</h3>
+            <p>我們把主動提取放進每次練習，讓「好像看過」變成能說、能寫、能使用。</p>
+          </article>
+          <article class="principle-card reveal">
+            <span class="step-number">03</span>
+            <h3>讓結果決定下一步</h3>
+            <p>以立即、隔日與七日回想觀察方法效果，而不是用一次測驗替一個人永久定型。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="lab">
+      <div class="container lab-shell">
+        <div class="lab-copy reveal">
+          <div>
+            <p class="eyebrow">Mini Experiment</p>
+            <h2>現在就做一次<br>小型記憶實驗。</h2>
+            <p>先觀察六個詞，再遮住答案。這不是能力評分，而是體驗「看過」與「主動想起來」之間的差別。</p>
+          </div>
+          <div class="lab-notes" aria-label="實驗原則">
+            <div>約 20 秒</div>
+            <div>不需登入</div>
+            <div>立即看結果</div>
+          </div>
+        </div>
+
+        <div class="experiment reveal" id="experiment-panel">
+          <div class="experiment-top">
+            <span>EXPERIMENT 001</span>
+            <div class="timer" id="timer" aria-live="polite">20</div>
+          </div>
+
+          <div id="study-stage">
+            <h3>觀察這六個詞</h3>
+            <p class="instruction">你可以用畫面、故事、聲音或分類來記。準備好後，不必等倒數結束。</p>
+            <div class="word-grid" aria-label="要記憶的詞語">
+              <div class="word-chip">月亮</div><div class="word-chip">咖啡</div><div class="word-chip">鑰匙</div>
+              <div class="word-chip">火車</div><div class="word-chip">雨傘</div><div class="word-chip">檸檬</div>
+            </div>
+            <div class="experiment-actions">
+              <button class="button button-dark" id="start-recall" type="button">我記好了，開始回想</button>
+              <button class="button" id="restart-study" type="button">重新倒數</button>
+            </div>
+          </div>
+
+          <div class="hidden" id="recall-stage">
+            <h3>選出剛才出現的六個詞</h3>
+            <p class="instruction">請先靠記憶選擇，再看答案。選滿六個後即可驗收。</p>
+            <div class="recall-grid" id="recall-grid"></div>
+            <div class="experiment-actions">
+              <button class="button button-dark" id="check-recall" type="button">查看我的結果</button>
+              <button class="button" id="show-study" type="button">回去再看一次</button>
+            </div>
+          </div>
+
+          <div class="hidden" id="result-stage">
+            <h3 id="result-title">完成第一次提取</h3>
+            <p class="instruction" id="result-copy"></p>
+            <div class="experiment-actions">
+              <button class="button button-dark" id="try-again" type="button">再試一次</button>
+              <a class="button" href="#programs">看看完整體驗</a>
+            </div>
+          </div>
+          <p class="status-message" id="status-message" aria-live="polite"></p>
+          <noscript><p>互動實驗需要啟用 JavaScript；其他公司與課程資訊仍可正常閱讀。</p></noscript>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-white" id="methods">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Solutions</p>
+            <h2>不是再多一套技巧，<br>而是一條完整學習閉環。</h2>
+          </div>
+          <p>帶入自己的內容，選擇適合任務的方法，建立提取線索，再用間隔複習與回想結果修正策略。</p>
+        </div>
+
+        <div class="method-grid">
+          <article class="method-card reveal" data-symbol="09">
+            <span class="method-label">NUMBERS</span>
+            <h3>數字轉碼</h3>
+            <p>把年份、電話、公式與編號轉成具體圖像，再用動作故事串起抽象資訊。</p>
+          </article>
+          <article class="method-card reveal" data-symbol="Aa">
+            <span class="method-label">LANGUAGE</span>
+            <h3>聲音鉤子</h3>
+            <p>以熟悉聲音連接陌生單字、姓名與術語，同時保留正確發音與真實語境。</p>
+          </article>
+          <article class="method-card reveal" data-symbol="#">
+            <span class="method-label">STRUCTURE</span>
+            <h3>標籤定位</h3>
+            <p>為文章、概念、法規和產品知識建立可搜尋的語意地址，練習隨機提取與比較。</p>
+          </article>
+          <article class="method-card reveal" data-symbol="↗">
+            <span class="method-label">SPACE</span>
+            <h3>空間路線</h3>
+            <p>把演講、流程與有順序的清單放進熟悉場景，支援順向、逆向與跳點回想。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="jerome">
+      <div class="container story-grid">
+        <div class="portrait-card reveal" role="img" aria-label="Jerome Kuo 創辦人視覺占位，正式上線可替換為人物照片">
+          <div class="portrait-caption">
+            <strong>Jerome Kuo 郭俊斌</strong>
+            <span>Founder / Memory Strategy Designer</span>
+          </div>
+        </div>
+        <div class="story-copy reveal">
+          <p class="eyebrow">Founder Story</p>
+          <h2>從物理實驗室，<br>到每個人的記憶實驗室。</h2>
+          <blockquote>「我想做的，不是告訴你記性好不好，而是和你一起找出：什麼方法，能讓重要的知識留下來。」</blockquote>
+          <p>Jerome 具有電機、電子物理、半導體研究與 AI 產品實作背景，也走過跨語言分享、科學教育、導覽與學生帶隊現場。他長期在不同領域做同一件事：把複雜資訊變成一般人能理解、記住並說出來的方法。</p>
+          <div class="credentials" aria-label="創辦人經歷摘要">
+            <div class="credential">電子物理與半導體研究</div>
+            <div class="credential">AI 產品與全端原型</div>
+            <div class="credential">跨語言分享與導覽</div>
+            <div class="credential">科學教育與學生帶隊</div>
+          </div>
+          <a class="button button-dark" href="#contact">邀請 Jerome 分享 →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="programs">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Programs</p>
+            <h2>從第一次有感，<br>到建立自己的方法。</h2>
+          </div>
+          <p>適合個人學習、校園活動、教師培訓與企業內訓。首發場次與 LINE 官方帳號即將公布。</p>
+        </div>
+
+        <div class="offer-grid">
+          <article class="offer reveal">
+            <span class="offer-type">FREE / ONLINE</span>
+            <h3>免費記憶實驗</h3>
+            <p>快速理解自己的記憶入口，帶走一個今天就能使用的小練習。</p>
+            <ul><li>3–5 分鐘策略快測</li><li>立即結果摘要</li><li>七日練習預告</li></ul>
+            <a class="button button-light" href="#lab">先做小實驗</a>
+          </article>
+          <article class="offer featured reveal">
+            <span class="offer-type">90 MIN / WORKSHOP</span>
+            <h3>找到你的記憶天才</h3>
+            <p>在現場測、做、驗收，用真實回想結果找出值得繼續使用的方法。</p>
+            <ul><li>四種記憶方法體驗</li><li>20 詞現場挑戰</li><li>個人七日實驗卡</li></ul>
+            <a class="button button-dark" href="#contact">取得開課通知</a>
+          </article>
+          <article class="offer reveal">
+            <span class="offer-type">CUSTOM / ORGANIZATION</span>
+            <h3>校園與企業方案</h3>
+            <p>將記憶策略帶進語言、考試、簡報、產品知識與 AI 時代的主動學習。</p>
+            <ul><li>主題演講與工作坊</li><li>客製任務與教材</li><li>前後測與成果回顧</li></ul>
+            <a class="button button-light" href="#contact">洽談合作</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-card reveal">
+          <div>
+            <p class="eyebrow">Let's Remember Better</p>
+            <h2>下一次忘記之前，<br>先換一個方法。</h2>
+            <p>講座邀約、校園／企業合作、課程開課通知，歡迎與記易創新聯絡。</p>
+          </div>
+          <a class="button button-light" href="mailto:guocheju@gmail.com?subject=記易創新合作洽詢">Email 聯絡 ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <p>© <span id="year">2026</span> 記易創新 MemGenius Innovation. Learning, remembered.</p>
+      <div class="footer-links">
+        <a href="#top">回到頂端</a>
+        <a href="mailto:guocheju@gmail.com">聯絡我們</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.querySelector('#menu-button');
+    const nav = document.querySelector('#primary-nav');
+    const timerNode = document.querySelector('#timer');
+    const studyStage = document.querySelector('#study-stage');
+    const recallStage = document.querySelector('#recall-stage');
+    const resultStage = document.querySelector('#result-stage');
+    const recallGrid = document.querySelector('#recall-grid');
+    const statusMessage = document.querySelector('#status-message');
+    const correctWords = ['月亮', '咖啡', '鑰匙', '火車', '雨傘', '檸檬'];
+    const decoys = ['相機', '手套', '氣球', '樹葉', '鋼琴', '餅乾'];
+    let seconds = 20;
+    let timerId;
+
+    function shuffle(items) {
+      const list = [...items];
+      for (let i = list.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [list[i], list[j]] = [list[j], list[i]];
+      }
+      return list;
+    }
+
+    function setStatus(message = '', type = '') {
+      statusMessage.textContent = message;
+      statusMessage.className = `status-message ${type}`.trim();
+    }
+
+    function startTimer() {
+      window.clearInterval(timerId);
+      seconds = 20;
+      timerNode.textContent = seconds;
+      timerId = window.setInterval(() => {
+        seconds -= 1;
+        timerNode.textContent = seconds;
+        if (seconds <= 0) showRecall();
+      }, 1000);
+    }
+
+    function showStudy() {
+      studyStage.classList.remove('hidden');
+      recallStage.classList.add('hidden');
+      resultStage.classList.add('hidden');
+      setStatus('再觀察一次，這次試著把六個詞連成一個畫面。');
+      startTimer();
+    }
+
+    function showRecall() {
+      window.clearInterval(timerId);
+      timerNode.textContent = 'GO';
+      studyStage.classList.add('hidden');
+      resultStage.classList.add('hidden');
+      recallStage.classList.remove('hidden');
+      recallGrid.innerHTML = '';
+      shuffle([...correctWords, ...decoys]).forEach((word) => {
+        const label = document.createElement('label');
+        label.className = 'recall-option';
+        const input = document.createElement('input');
+        input.type = 'checkbox';
+        input.value = word;
+        input.addEventListener('change', () => {
+          const selected = recallGrid.querySelectorAll('input:checked');
+          if (selected.length > 6) {
+            input.checked = false;
+            setStatus('最多選六個詞；請取消一個再試。');
+          } else {
+            setStatus(`已選 ${selected.length}／6 個詞`);
+          }
+        });
+        label.append(input, document.createTextNode(word));
+        recallGrid.append(label);
+      });
+      setStatus('答案已經遮住。請選出剛才看過的六個詞。');
+    }
+
+    function checkRecall() {
+      const selected = [...recallGrid.querySelectorAll('input:checked')].map((input) => input.value);
+      if (selected.length !== 6) {
+        setStatus(`請選滿六個詞，目前選了 ${selected.length} 個。`);
+        return;
+      }
+      const score = selected.filter((word) => correctWords.includes(word)).length;
+      document.querySelector('#result-title').textContent = `你想起了 ${score}／6 個`;
+      document.querySelector('#result-copy').textContent = score === 6
+        ? '很棒。下一步不是追求更快，而是隔一段時間、不看答案再提取一次。'
+        : '這不是能力評分。試著把漏掉的詞接進一個誇張畫面，再做一次，觀察方法是否改變結果。';
+      recallStage.classList.add('hidden');
+      resultStage.classList.remove('hidden');
+      setStatus('你剛完成了一次主動提取。', 'success');
+    }
+
+    menuButton.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+      menuButton.setAttribute('aria-label', isOpen ? '關閉導覽選單' : '開啟導覽選單');
+      menuButton.textContent = isOpen ? '×' : '☰';
+      document.body.classList.toggle('menu-open', isOpen);
+    });
+
+    nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.setAttribute('aria-label', '開啟導覽選單');
+      menuButton.textContent = '☰';
+      document.body.classList.remove('menu-open');
+    }));
+
+    document.querySelector('#start-recall').addEventListener('click', showRecall);
+    document.querySelector('#restart-study').addEventListener('click', showStudy);
+    document.querySelector('#show-study').addEventListener('click', showStudy);
+    document.querySelector('#try-again').addEventListener('click', showStudy);
+    document.querySelector('#check-recall').addEventListener('click', checkRecall);
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .12 });
+
+    document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+    document.querySelector('#year').textContent = new Date().getFullYear();
+    startTimer();
+  </script>
+</body>
+</html>
